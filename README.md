@@ -1,104 +1,60 @@
-# ds-project-template
+# EDA Project on King County Housing Details by Monali Talele
 
-Template for creating ds simple projects
+This project is about Exploratory Data Analysis for King County Housing Details. 
+
+## Task
+- Create GitHub Repository
+- Explore and Get data from PostgreSQL database
+- Data Cleaning
+- Defining Personas of buyer and client
+- New Features
+- Explore Relationships
+- At Least 3 Insights, at least 1 geographical
+- At Least 3 recommendations for Client
+
 
 ## Requirements
+The requirements have been stated in requirements.txt file.
 
-- pyenv
-- python==3.11.3
+pyenv
+python==3.11.3
+altair==5.0.1
+jupyterlab==4.0.1
+ipywidgets==8.0.6
+matplotlib==3.7.1
+pandas==2.0.2
+jupyterlab-dash==0.1.0a3
+seaborn==0.12.2
+python-dotenv==1.0.0
+psycopg2-binary==2.9.7
+SQLAlchemy==2.0.15
+missingno==0.5.2
+folium==
 
 ## Setup
+The installation of virtual environment and required packages can be done with the following commands (macOS) 
 
-One of the first steps when starting any data science project is to create a virtual environment. For this project you have to create this environment from scratch yourself. However, you should be already familiar with the commands you will need to do so. The general workflow consists of... 
+pyenv local 3.11.3
+python -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
 
-* setting the python version locally to 3.11.3
-* creating a virtual environment using the `venv` module
-* activating your newly created environment 
-* upgrading `pip` (This step is not absolutely necessary, but will save you trouble when installing some packages.)
-* installing the required packages via `pip`
+## Data
+The data is available in a postgreSQL database. There are 2 tables :
+King_county_house_details : Table with details of houses.
+King_county_house_sales : Table with details of house sales.
 
-At the end, you want to make sure that people who are interested in your project can create an identical environment on their own computer in order to be able to run your code without running into errors. Therefore you can create a `requirements file` and add it to your repository. You can create such a file by running the following command: 
+Both tables are related by the house_id column
 
-```bash
-pip freeze > requirements.txt
-```
+I fetch the data from postgreSQL in Data_Fetching.ipynb using psycopg. I then save the data in data/eda.csv to be used for the exploratory data analysis
 
-*Note: In rare case such a requirements file created with `pip freeze` might not ensure that another (especially M1 chip) user can install and execute it properly. This can happen if libraries need to be compiled (e.g. SciPy). Then it also depends on environment variables and the actual system libraries.*
+## Persona Definition
+For this project I defined 2 personas : The Realor and the Buyer
 
-### Unit testing (Optional)
+The Realtor works with wealthy clients and is interested in making fat commissions. They charge 6% of house sale price as commission.
 
-If you write python scripts for your data processing methods, you can also write unit tests. In order to run the tests execute in terminal:
+The Buyer is a wealthy client with an unlimited budget, wants either 4+ bathrooms or a smaller house nearby. He wants a big lot where he can have his own tennis court & pool. The house should have proximity to a Golf Course. He prefers a historic house, which is not at the Waterfront.
 
-```bash
-pytest
-```
-
-This command will execute all the functions in your project that start with the word **test**.
-
-## Set up your Environment
-This repo contains a requirements.txt file with a list of all the packages and dependencies you will need.
-
-Before you can start with plotly in Jupyter Lab you have to install node.js (if you haven't done it before).
-- Check **Node version**  by run the following commands:
-    ```sh
-    node -v
-    ```
-    If you haven't installed it yet, begin at `step_1`. Otherwise, proceed to `step_2`.
-
-
-### **`macOS`** type the following commands : 
-
-
-- `Step_1:` Update Homebrew and install Node by following commands:
-    ```sh
-    brew update
-    brew install node
-    ```
-
-- `Step_2:` Install the virtual environment and the required packages by following commands:
-
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-### **`WindowsOS`** type the following commands :
-
-
-- `Step_1:` Update Chocolatey and install Node by following commands:
-    ```sh
-    choco upgrade chocolatey
-    choco install nodejs
-    ```
-
-- `Step_2:` Install the virtual environment and the required packages by following commands.
-
-   For `PowerShell` CLI :
-
-    ```PowerShell
-    pyenv local 3.11.3
-    python -m venv .venv
-    .venv\Scripts\Activate.ps1
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-
-    For `Git-Bash` CLI :
-  
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/Scripts/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
- 
-
- **`Note:`**
-    If you encounter an error when trying to run `pip install --upgrade pip`, try using the following command:
-
-   ```Bash
-   python.exe -m pip install --upgrade pip
-   ```
+## Exploratory Data Analysis
+In the EDA.ipynb notebook, I fetch the data from csv, clean it, add new features, explore relationships. I then find 3 insights and 6 recommendations for the Client.
